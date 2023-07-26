@@ -1,0 +1,53 @@
+\documentclass[]{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Enhancing 3D Object Detection: Leveraging the Cross-View Transformer as a Feature Extractor for the CenterPoint Model}
+\author{Eshan Iyer \\ eshan@eshaniyer.tech  \and Dev Arora \\ aroradev314@gmail.com \and Feng Chen \\feng.chen@utdallas.edu }
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\section{Introduction}
+In the realm of 3D object detection and perception for autonomous systems, the extraction of robust and discriminative features plays a critical role in enabling accurate scene understanding and navigation. Autonomous vehicles heavily rely on a comprehensive understanding of their surroundings to ensure safe and efficient operations. To this end, we propose a novel approach that harnesses the power of the cross-view transformer as a 3D feature extractor for the CenterPoint model.
+
+Traditionally, addressing the challenges of 3D object detection has often involved explicit modeling of geometric relationships and depth estimation [2, 14, 15, 16, 20, 29, 35]. However, such methods are not without their limitations. Depth estimation from images can be error-prone, particularly when dealing with objects at varying distances, and depth-based projections introduce inflexibility in mapping between different views.
+
+In this research, we present a novel alternative that capitalizes on the cross-view transformer's capabilities to serve as an efficient and effective 3D feature extractor for the CenterPoint model. Unlike conventional approaches, our cross-view transformer does not explicitly model geometric reasoning but instead learns to extract and map 3D features between different views using a geometry-aware positional embedding mechanism. By employing multi-head attention, the transformer effectively captures essential features from various views and fuses them into a canonical 3D representation, enhancing the CenterPoint model's spatial understanding and discrimination capabilities.
+
+A key strength of our proposed approach lies in its ability to implicitly learn geometric transformations directly from data. Without the need for explicit depth estimation, the cross-view transformer leverages the inherent spatial information in the positional embeddings to infer accurate 3D feature representations. This not only simplifies the model architecture but also significantly reduces computational complexity, making it more amenable to real-time applications in autonomous systems.
+
+To validate the efficacy of our proposed approach, extensive experiments have been conducted on benchmark datasets. The results demonstrate that our cross-view transformer, when integrated as a 3D feature extractor for the CenterPoint model, achieves state-of-the-art performance in 3D object detection tasks. Its ability to extract rich and discriminative features enables more precise scene understanding, enhancing the overall navigation and decision-making capabilities of autonomous vehicles.
+
+\section{Related Works}
+\textbf{CenterPoint}
+\\
+\textbf{Cross-view Transformer}
+
+\section{Cross View Transformer for 3D Object Detection}
+
+\section{Implementation Details}
+
+\section{Results}
+
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+\end{document}
