@@ -1,10 +1,17 @@
-main.aux
-main.bbl
-main.blg
-main.fdb_latexmk
-main.fls
-main.log
-main.loh
-main.pdf
-main.synctex.gz
-main.out
+# IDEs
+.idea
+
+# Files as a result of compilation
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.loh
+*.pdf
+*.synctex.gz
+*.out
+*.spl
+*.xml
+*.bcf
