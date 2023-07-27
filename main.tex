@@ -1,4 +1,4 @@
-\documentclass[twocolumn, times]{article}
+\documentclass[times, report, parskip, openbib, twocolumn]{article}
 
 % Language setting
 % Replace `english' with e.g. `spanish' to change the document language
@@ -6,7 +6,7 @@
 
 % Set page size and margins
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
-\usepackage[letterpaper,top=2cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage[letterpaper,top=.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
 \usepackage{amsmath}
@@ -24,8 +24,11 @@
 \begin{document}
 \maketitle
 
-% \begin{abstract}
-% \end{abstract}
+\begin{abstract}
+
+    We present Cross-View CenterPoint (CVCP), a novel 3D object detection framework that leverages the advantages of multi-camera systems for accurate and robust localization. Our approach combines Cross-View Transformers (CVT) as the backbone and CenterPoint object detection model. CVT processes multi-view inputs, capturing cross-view correspondences with a cross-view attention mechanism, and incorporates camera-aware positional encoding and map-view latent embedding for comprehensive scene understanding. CenterPoint predicts object properties, such as centers, 3D bounding box sizes, and velocities, achieving precise localization. The two-stage integration with a point-feature extractor further refines localization accuracy. Extensive experiments on benchmark datasets demonstrate the superiority of CVCP over traditional LiDAR-based and baseline models, offering a promising advancement in 3D object detection with multi-view features.
+    
+\end{abstract}
 
 \section{Introduction}
 
@@ -60,38 +63,91 @@ The contributions of this research are as follows:
 
 In the following sections, we provide a detailed overview of the Cross-View CenterPoint (CVCP) model, the integration of Cross-View Transformers, and the two-stage CenterPoint refinement. We present experimental results and analyses, comparing the performance of the proposed model with baseline approaches. Ultimately, we believe that the CVCP framework has the potential to significantly advance 3D object detection in real-world applications, where the fusion of multi-view features can lead to more accurate and comprehensive scene understanding.
 
-\section{Proposed Model: Cross-View CenterPoint (CVCP)}
+\section{Cross-View CenterPoint}
+\label{sec:proposed_model}
+
 PLACEHOLDER
 
 \subsection{Architecture Overview}
-PLACEHOLDER
+\label{subsec:architecture_overview}
+
+The architecture of the CVCP model is composed of two main stages: the Cross-View Transformers as the backbone and the CenterPoint object detection module. The Cross-View Transformers process multi-view inputs from the camera system and generate enriched feature representations. These features are then fed into the CenterPoint object detection module to predict various object properties, such as object centers, 3D bounding box sizes, and velocities.
 
 \subsection{Cross-View Transformers as Backbone}
-PLACEHOLDER
+\label{subsec:cross_view_transformers}
+
+The Cross-View Transformers (CVT) serve as the backbone of the CVCP model. They are responsible for handling multi-view inputs from the camera system and extracting relevant visual features. The CVT architecture consists of multiple layers, including multi-view input representation, cross-view attention mechanism, camera-aware positional encoding, and map-view latent embedding.
 
 \subsubsection{Multi-View Input Representation}
-PLACEHOLDER
+\label{subsubsec:multi_view_representation}
+
+In this stage, the CVT processes inputs from multiple cameras and generates a fused representation of the scene. Each camera view provides high-resolution images, which are aligned and combined to form a comprehensive multi-view representation of the environment. The fusion operation can be defined as:
+\begin{align}
+    \text{Multi-View Feature} &= \sum_{i=1}^{N} \text{Camera-View}_i
+\end{align}
+where $N$ is the number of camera views and $\text{Camera-View}_i$ represents the feature from the $i$-th camera view.
 
 \subsubsection{Cross-View Attention Mechanism}
-PLACEHOLDER
+\label{subsubsec:cross_view_attention}
+
+The cross-view attention mechanism in the CVT enables the model to capture and reason about correspondences across multiple camera views. By attending to relevant information from different viewpoints, the CVT can better understand the scene's geometry and appearance, enhancing the accuracy of object detection. The cross-view attention operation can be formulated as:
+\begin{align}
+    \text{Cross-View Attended Feature} &= \text{Softmax}\left(\frac{\text{Multi-View Feature} \times \text{Query} \times \text{Key}^T}{\sqrt{d_k}}\right) \times \text{Value}
+\end{align}
+where $\text{Query}$, $\text{Key}$, and $\text{Value}$ are the query, key, and value matrices, respectively, and $d_k$ represents the dimension of the query/key vectors.
 
 \subsubsection{Camera-Aware Positional Encoding}
-PLACEHOLDER
+\label{subsubsec:camera_aware_positional_encoding}
+
+The camera-aware positional encoding in the CVT takes into account the spatial relationships between different camera views. This positional encoding helps the model to understand the relative locations and orientations of objects in the scene, facilitating more accurate localization. The positional encoding can be defined as:
+\begin{align}
+    \text{Positional Encoding} &= \text{Encoding}(\text{Camera-View})
+\end{align}
+where $\text{Encoding}(\cdot)$ represents the positional encoding function applied to each camera view.
 
 \subsubsection{Map-View Latent Embedding}
-PLACEHOLDER
+\label{subsubsec:map_view_latent_embedding}
+
+The map-view latent embedding captures the latent features from the multi-view representation and generates a compact representation of the scene. This embedding is then used as input to the CenterPoint object detection module. The map-view embedding can be formulated as:
+\begin{align}
+    \text{Map-View Embedding} &= \text{MLP}(\text{Multi-View Feature})
+\end{align}
+where $\text{MLP}(\cdot)$ represents the multi-layer perceptron applied to the multi-view feature to generate the map-view embedding.
 
 \subsection{CenterPoint Object Detection}
-PLACEHOLDER
+\label{subsec:centerpoint_object_detection}
+
+The CenterPoint object detection module takes the enriched feature representations from the CVT backbone and performs 3D object detection. This module consists of several heads, including the center heatmap head, regression heads, and velocity head for object tracking.
 
 \subsubsection{Center Heatmap Head}
-PLACEHOLDER
+\label{subsubsec:center_heatmap_head}
+
+The center heatmap head produces a heatmap peak at the center location of each detected object. During training, the heatmap is supervised using 2D Gaussians centered at the projection of the 3D object centers into the map-view. The center heatmap helps the model to focus on relevant regions and improve localization accuracy. The heatmap generation can be defined as:
+\begin{align}
+    \text{Heatmap} &= \text{Gaussian}(\text{Object Center})
+\end{align}
+where $\text{Gaussian}(\cdot)$ represents the 2D Gaussian function centered at the object center.
 
 \subsubsection{Regression Heads}
-PLACEHOLDER
+\label{subsubsec:regression_heads}
+
+The regression heads predict various object properties, including the sub-voxel location refinement, height-above-ground, 3D bounding box size, and yaw rotation angle. Each output uses its own branch of fully-connected layers and is supervised using L1 regression loss during training. The regression can be formulated as:
+\begin{align}
+    \text{Prediction} &= \text{MLP}(\text{Map-View Embedding})
+\end{align}
+where $\text{MLP}(\cdot)$ represents the multi-layer perceptron applied to the map-view embedding to generate the object property predictions.
 
 \subsubsection{Velocity Head and Object Tracking}
-PLACEHOLDER
+\label{subsubsec:velocity_head_object_tracking}
+
+The velocity head predicts a two-dimensional velocity estimation for each detected object. This velocity estimation is used for object tracking through time. At inference time, object tracking is performed by associating current detections to past ones using the predicted velocity estimates. The velocity estimation can be defined as:
+\begin{align}
+    \text{Velocity} &= \text{MLP}(\text{Map-View Embedding})
+\end{align}
+where $\text{MLP}(\cdot)$ represents the multi-layer perceptron applied to the map-view embedding to generate the velocity predictions.
+
+In the next section, we describe the integration of the Two-Stage CenterPoint with the CVCP model to further improve object localization and refine 3D bounding box predictions.
+
 
 \section{Two-Stage CenterPoint Integration}
 PLACEHOLDER
