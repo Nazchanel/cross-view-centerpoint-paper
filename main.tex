@@ -6,7 +6,7 @@
 
 % Set page size and margins
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
-\usepackage[letterpaper,top=2cm,bottom=2.5cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
 \usepackage{amsmath}
@@ -24,26 +24,41 @@
 \begin{document}
 \maketitle
 
-\begin{abstract}
-Extracting robust and discriminative features is crucial for accurate scene understanding and navigation in 3D object detection and perception for autonomous systems. Autonomous vehicles must comprehensively understand their surroundings to ensure safe and efficient operations. Our proposed approach harnesses the power of the cross-view transformer as a 3D feature extractor for the CenterPoint model to achieve this goal.
-
-Traditionally, 3D object detection has involved explicitly modeling geometric relationships and depth estimation, which has its limitations. Our research presents a novel alternative that capitalizes on the cross-view transformer's capabilities to serve as an efficient and effective 3D feature extractor for the CenterPoint model. Our approach does not explicitly model geometric reasoning but instead learns to extract and map 3D features between different views using a position embedding mechanism. By employing multi-head attention, the transformer captures essential features from various views and fuses them into a canonical 3D representation, enhancing the CenterPoint model's spatial understanding and discrimination capabilities.
-
-Our approach's key strength is its ability to implicitly learn geometric transformations directly from data, simplifying the model architecture and reducing computational complexity, making it more amenable to real-time applications in autonomous systems. Extensive experiments on benchmark datasets validate our approach's efficacy, demonstrating state-of-the-art performance in 3D object detection tasks. Its ability to extract rich and discriminative features enables more precise scene understanding, enhancing autonomous vehicles' overall navigation and decision-making capabilities.
-\end{abstract}
+% \begin{abstract}
+% \end{abstract}
 
 \section{Introduction}
-PLACEHOLDER
 
-\section{Related Work}
-\textbf{Semantic Segmentation in Multi-View Settings}
-\newline \newline
-\textbf{3D Object Detection with LiDAR}
-\newline \newline
-\textbf{Cross-View Transformers}
-\newline \newline
-\textbf{CenterPoint: 3D Object Detection Framework}
-\newline \newline
+The detection and localization of objects in 3D space play a crucial role in various applications, ranging from autonomous driving to robotics and augmented reality. Traditional methods for 3D object detection often rely on LiDAR sensors to capture point clouds, which provide accurate distance information but can be limited in capturing comprehensive scene details from multiple viewpoints. On the other hand, multi-camera systems can offer rich visual information from diverse perspectives but may need more precise depth information.
+
+In this research, we propose a novel 3D object detection framework called Cross-View CenterPoint (CVCP) that leverages the strengths of multi-camera systems to enhance the accuracy and robustness of object detection. Our approach combines two powerful components: the Cross-View Transformers (CVT) as a backbone and the CenterPoint object detection model. By doing so, we aim to overcome the limitations of individual sensors and create a unified and more effective system for 3D object detection.
+
+\subsection{Background}
+
+LiDAR-based approaches widely adopt 3D object detection due to their precise depth measurements and robustness in various environmental conditions. However, point clouds' sparsity and inability to capture fine-grained visual details can limit these methods. In contrast, multi-camera systems can provide high-resolution images from different viewpoints, enabling a more comprehensive understanding of the scene. Using cameras could lead to a more complete and accurate representation of the environment. A traditional array of cameras can be significantly cheaper than a LiDAR system, allowing for greater accessibility.
+
+\subsection{Objectives}
+
+The primary objective of this research is to develop a novel 3D object detection framework that integrates Cross-View Transformers (CVT) and CenterPoint to leverage multi-view features for accurate and robust object localization. By using the information from camera images, we aim to achieve the following goals:
+
+\begin{enumerate}
+    \item Enhance Detection Accuracy: By utilizing cross-view attention mechanisms in CVT, the proposed model can capture and reason about correspondences across multiple camera views, leading to improved accuracy in object detection.
+    \item Comprehensive Scene Understanding: The incorporation of multi-camera features allows the model to benefit from rich visual cues, providing a more holistic understanding of the environment.
+    \item Localization Precision: The two-stage integration of CenterPoint refines object localization, resulting in more accurate and detailed 3D bounding box predictions.
+\end{enumerate}
+
+\subsection{Contributions}
+
+The contributions of this research are as follows:
+
+\begin{enumerate}
+    \item \textbf{Cross-View CenterPoint (CVCP) Model}: We propose a novel architecture that combines Cross-View Transformers and CenterPoint to effectively integrate multi-view features into the 3D object detection process.
+    \item \textbf{Improved Object Detection Performance}: The CVCP model demonstrates superior performance compared to traditional LiDAR-based approaches by leveraging the complementary strengths of a multi-camera systems.
+    \item \textbf{Comprehensive Evaluation}: We conduct extensive experiments on benchmark datasets to validate the effectiveness and robustness of the proposed CVCP model in 3D object detection tasks.
+    \item \textbf{New Directions for Multi-View-Based Object Detection}: The integration of CVT and CenterPoint opens up new possibilities for multi-view-based object detection, contributing to advancements in computer vision and autonomous systems.
+\end{enumerate}
+
+In the following sections, we provide a detailed overview of the Cross-View CenterPoint (CVCP) model, the integration of Cross-View Transformers, and the two-stage CenterPoint refinement. We present experimental results and analyses, comparing the performance of the proposed model with baseline approaches. Ultimately, we believe that the CVCP framework has the potential to significantly advance 3D object detection in real-world applications, where the fusion of multi-view features can lead to more accurate and comprehensive scene understanding.
 
 \section{Proposed Model: Cross-View CenterPoint (CVCP)}
 PLACEHOLDER

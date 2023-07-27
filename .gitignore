@@ -1,5 +1,6 @@
 # IDEs
 .idea
+.vscode
 
 # Files as a result of compilation
 *.aux
@@ -9,7 +10,7 @@
 *.fls
 *.log
 *.loh
-*.pdf
+# *.pdf
 *.synctex.gz
 *.out
 *.spl
