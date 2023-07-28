@@ -10,9 +10,12 @@
 *.fls
 *.log
 *.loh
-# *.pdf
 *.synctex.gz
 *.out
 *.spl
 *.xml
 *.bcf
+# *.pdf
+
+# Scripts to clean extra files
+*.sh
