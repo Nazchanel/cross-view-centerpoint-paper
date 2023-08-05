@@ -15,7 +15,11 @@
 *.spl
 *.xml
 *.bcf
-# *.pdf
+*.swp
 
 # Scripts to clean extra files
 *.sh
+
+# Test Files
+*test*
+
